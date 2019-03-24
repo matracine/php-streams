@@ -1,3 +1,12 @@
+[![Latest Stable Version](https://poser.pugx.org/mracine/php-streams/v/stable)](https://packagist.org/packages/mracine/php-streams)
+[![PHP 7 ready](https://php7ready.timesplinter.ch/matracine/php-streams/master/badge.svg)](https://travis-ci.org/matracine/php-streams)
+[![License](https://poser.pugx.org/mracine/php-streams/license)](https://packagist.org/packages/mracine/php-streams)
+[![Travis Build Status](https://travis-ci.org/matracine/php-streams.svg?branch=master)](https://travis-ci.org/matracine/php-streams)
+[![Scrutinizer Build Status](https://scrutinizer-ci.com/g/matracine/php-streams/badges/build.png?b=master)](https://scrutinizer-ci.com/g/matracine/php-streams/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/matracine/php-streams/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/matracine/php-streams/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/matracine/php-streams/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e6d172b10c3f12e1bb35/maintainability)](https://codeclimate.com/github/matracine/php-streams/maintainability)
+
 # PHP STREAMS ABSTRACTION LIBRARY
 
 **mracine\Streams** is a library that provide streams abstraction to use differents kind of resources (files, sockets, pipes, process input/output, strings) as streams provider. It makes testing simple for classes which use the mracine\Sreams\Stream interface.
