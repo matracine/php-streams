@@ -46,7 +46,7 @@ interface Stream
      * @return int the numer of writen bytes
      * @throws mracine\Streams\Exception\StreamsException when an error appends
      */
-    public function write(string $string, $length=-1) : int;
+    public function write(string $string, $length = -1) : int;
 
     /**
      * Close a stream

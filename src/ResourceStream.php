@@ -56,7 +56,7 @@ class ResourceStream implements Stream
         if (is_null($this->stream)) {
             throw new StreamException(sprintf("Cannot read from closed (null) stream"));
         }
-        if ($length <= 0) {
+        if ($length<=0) {
             throw new \InvalidArgumentException("Cannot read zero ot negative count of bytes from a stream");
         }
 
@@ -72,7 +72,7 @@ class ResourceStream implements Stream
     /**
      * {@inheritDoc}
      */
-    public function write(string $string, $length=null) : int
+    public function write(string $string, $length = null) : int
     {
         if (is_null($this->stream)) {
             throw new StreamException(sprintf("Cannot write to closed (null) stream"));
@@ -95,7 +95,7 @@ class ResourceStream implements Stream
         $hasBeenClosed = false;
         if (!is_null($this->stream)) {
             $hasBeenClosed = @fclose($this->stream);
-            $this->stream=null;
+            $this->stream = null;
         }
         if (false === $hasBeenClosed) {
             throw new StreamException("Error closing stream");

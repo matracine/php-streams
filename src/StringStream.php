@@ -61,7 +61,7 @@ class StringStream implements Stream
             // returns all
             $result = $this->buffer;
             // No more in the buffer
-            $this->buffer='';
+            $this->buffer = '';
         } else {
             // acquire $length characters from the buffer
             $result = substr($this->buffer, 0, $length);
@@ -77,7 +77,7 @@ class StringStream implements Stream
      *
      * {@inheritDoc}
      */
-    public function write(string $data, $length=null) : int
+    public function write(string $data, $length = null) : int
     {
         if (is_null($this->buffer)) {
             throw new StreamException(sprintf("Cannot write to closed (null) stream"));
