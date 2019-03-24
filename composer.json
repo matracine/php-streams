@@ -21,8 +21,7 @@
         }
     },
     "require": {
-        "php": "^7.0",
-        "ext-sockets": "*"
+        "php": "^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
