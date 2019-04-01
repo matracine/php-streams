@@ -13,18 +13,18 @@ use mracine\Streams\Stream;
 use mracine\Streams\Exception\StreamException;
 
 /**
- * class StringStream
+ * class BufferStream
  *
  * Initialized with a string, the read method retreive it as done with fread, consuming the buffer.
- * When all the string has been read, exception is thrown when try to read again.
+ * When all the buffer has been read, exception is thrown when try to read again.
  *
- * @since   0.1
+ * @since   0.2.0
  */
 
-class StringStream implements Stream
+class BufferStream implements Stream
 {
     /**
-     * @var string $buffer Stores the string to use
+     * @var string $buffer Stores the string to use when read rhe stream
      */
     protected $buffer;
 

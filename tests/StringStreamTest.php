@@ -12,13 +12,13 @@ namespace mracine\Streams\Tests;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Constraint\IsType;
 
-use mracine\Streams\StringStream;
+use mracine\Streams\BufferStream;
 use mracine\Streams\Exceptions\StreamException;
 
 /**
- * @coversDefaultClass mracine\Streams\StringStream
+ * @coversDefaultClass mracine\Streams\BufferStream
  */
-class StringStreamTest extends TestCase
+class BufferStreamTest extends TestCase
 {
     /**
      * @covers ::__construct
@@ -26,7 +26,7 @@ class StringStreamTest extends TestCase
      */
     public function test__construct(string $string)
     {
-        $this->assertInstanceOf(StringStream::class, new StringStream($string));
+        $this->assertInstanceOf(BufferStream::class, new BufferStream($string));
     }
 
     public function constructProvider()
@@ -51,7 +51,7 @@ class StringStreamTest extends TestCase
 
     public function test__write(string $string, $length, int $expected)
     {
-        $stream = new StringStream('Does not matters');
+        $stream = new BufferStream('Does not matters');
         if (is_null($length)) {
             $this->assertEquals($expected, $stream->write($string));
         } else {
@@ -83,7 +83,7 @@ class StringStreamTest extends TestCase
      */
     public function test__writeWithNegativeLength()
     {
-        $stream = new StringStream('Does not matters');
+        $stream = new BufferStream('Does not matters');
         $stream->write("PLOP", -1);
     }
 
@@ -93,7 +93,7 @@ class StringStreamTest extends TestCase
      */
     public function test__writeClosed()
     {
-        $stream = new StringStream('Does not matters');
+        $stream = new BufferStream('Does not matters');
         $stream->close();
         $stream->write("PLOP");
     }
@@ -104,7 +104,7 @@ class StringStreamTest extends TestCase
      */
     public function test__read()
     {
-        $stream = new StringStream('123456789');
+        $stream = new BufferStream('123456789');
 
         $this->assertEquals('', $stream->read(0));
         $this->assertEquals('1', $stream->read(1));
@@ -119,7 +119,7 @@ class StringStreamTest extends TestCase
      */
     public function test__readBadLength()
     {
-        $stream = new StringStream('123456789');
+        $stream = new BufferStream('123456789');
         $stream->read(-1);
     }
 
@@ -128,23 +128,23 @@ class StringStreamTest extends TestCase
      * @dataProvider readWhileEmptyProvider
      * @expectedException mracine\Streams\Exception\StreamException
      */
-    public function test__readWhileEmpty(StringStream $stream, int $length)
+    public function test__readWhileEmpty(BufferStream $stream, int $length)
     {
         $stream->read($length);
     }
 
     public function readWhileEmptyProvider()
     {
-        $stream = new StringStream('123456789');
+        $stream = new BufferStream('123456789');
         $stream->read(9);
         yield [$stream, 1];
 
-        $stream = new StringStream('123456789');
+        $stream = new BufferStream('123456789');
         $stream->read(5);
         $stream->read(4);
         yield [$stream, 1];
 
-        $stream = new StringStream('');
+        $stream = new BufferStream('');
         yield [$stream, 1];
     }
 
@@ -153,7 +153,7 @@ class StringStreamTest extends TestCase
      */
     public function testReadClosed()
     {
-        $stream = new StringStream('123456789');
+        $stream = new BufferStream('123456789');
         $stream->close();
         $stream->read(1);
     }

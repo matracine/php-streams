@@ -29,14 +29,14 @@ The mracine\Streams\Stream interface provides :
 There are actualy two classes implementing the Stream interface :
 
 - mracine\Streams\ResourceStream : abstract a PHP resource (fils, socket, UNIX pipes, process....)
-- mracine\Streams\StringStream : abstract a PHP string
+- mracine\Streams\BufferStream : abstract a PHP string in a buffer
 
 ```php
 <?php
 use mracine\Streams;
 
 $socketStream = new Streams\ResourceStream(stream_socket_client('tcp://'.$serverIP.':'.$serverPort));
-$stringStream = new Streams\StringStream('Hello World !');
+$bufferStream = new Streams\BufferStream('Hello World !');
 
 // talk function does not have to know what kind of "resource" it communicate with
 // Could be a file, a socket, a process or even a string 
@@ -49,9 +49,9 @@ function talk(Streams\Stream $stream)
 }
 
 echo talk($socketStream): // Will echo 5 firsts bytes the server returned
-echo talk($stringStream); // Will echo "Hello"
-echo talk($stringStream); // Will echo " Worl"
-echo talk($stringStream); // Will echo "d !"
+echo talk($bufferStream); // Will echo "Hello"
+echo talk($bufferStream); // Will echo " Worl"
+echo talk($bufferStream); // Will echo "d !"
 
 
 ```
