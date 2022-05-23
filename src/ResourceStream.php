@@ -11,6 +11,7 @@ namespace mracine\Streams;
 
 use mracine\Streams\Stream;
 use mracine\Streams\Exception\StreamException;
+use mracine\Streams\Exception\TimeoutException;
 
 /**
  * class ResourceStream
@@ -61,9 +62,16 @@ class ResourceStream implements Stream
         }
 
         $result = @fread($this->stream, $length);
-
         if (false === $result) {
             throw new StreamException(sprintf("Error reading %d bytes", $length));
+        }
+        
+        $streamInfos = stream_get_meta_data($this->stream);
+        if (true === $streamInfos['timed_out']) {
+            // TODO: How to test timeout ???
+            // @codeCoverageIgnoreStart
+            throw new TimeoutException(sprintf("Timeout reading %d bytes", $length));
+            // @codeCoverageIgnoreEnd
         }
 
         return $result;
