@@ -61,7 +61,11 @@ class ResourceStream implements Stream
             throw new \InvalidArgumentException("Cannot read zero ot negative count of bytes from a stream");
         }
 
-        $result = @fread($this->stream, $length);
+        try {
+            $result = @fread($this->stream, $length);            
+        } catch(\Throwable $e) {
+            throw new StreamException(sprintf("Error reading %d bytes", $length));
+        }
         if (false === $result) {
             throw new StreamException(sprintf("Error reading %d bytes", $length));
         }
@@ -88,7 +92,11 @@ class ResourceStream implements Stream
         if (is_null($length)) {
             $length = strlen($string);
         }
-        $result = @fwrite($this->stream, $string, $length);
+        try {
+            $result = @fwrite($this->stream, $string, $length);
+        } catch (\Throwable $e) {
+            throw new StreamException(sprintf("Error writing %d bytes", $length));
+        }
         if (false === $result) {
             throw new StreamException(sprintf("Error writing %d bytes", $length));
         }
